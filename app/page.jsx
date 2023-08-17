@@ -1,0 +1,68 @@
+'use client'
+import React, { useState } from 'react';
+import Image from 'next/image'
+import dashboard from './dashboard.module.css'
+import Link from 'next/link';
+import { FaDiscord } from 'react-icons/fa';
+
+export default function Dashboard() {
+  const [clickCount, setClickCount] = useState(0);
+  const handleTitleClick  = () => {
+    setClickCount(clickCount + 1)
+  }
+  const color1 = '#00FFC2';
+  const color2 = '#FF5A21';
+
+  const titleColor = clickCount % 2 === 0 ? color1 : color2;
+
+  return (
+    <div className={dashboard.container}>
+      <div className={dashboard.imgContainer}>
+        <Image src="/images/raccoon.png"
+          width={197}
+          height={642}
+          alt="image of the author"
+        />
+      </div>
+      <div className={dashboard.imgDesk}>
+        <img src="/images/raaccondesk.png"
+          alt="image of the author"
+          className={dashboard.raccoon}
+        />
+      </div>
+      <div className={dashboard.content}>
+        <div className={dashboard.info}>
+          <h1
+            className={dashboard.title}
+            onClick={handleTitleClick}
+            style={{ color: titleColor }}
+          >
+            ZOON
+          </h1>
+          <div className={dashboard.buttons}>
+            <button
+              onClick={() => window.open('https://discord.com/invite/wMmXRXaS', '_blank')}
+              className={dashboard.btnDiscord}
+              style={{ color: '#000', background: titleColor }}
+            >
+              <FaDiscord className={dashboard.icon} />  JOIN DISCORD
+            </button>
+            <button
+              onClick={() => window.open('https://twitter.com/zoonlabs', '_blank')}
+
+              className={dashboard.btnTwitter}
+              style={{ color: titleColor, border: `1px solid ${titleColor}` }}
+            >
+              WHAT’S ZOON?
+            </button>
+          </div>
+          <p className={dashboard.description}>
+            We all should make it,
+            not just founders.<span style={{ color: titleColor }}> #WAGMI</span>
+          </p>
+        </div>
+        <div className={dashboard.btnLogin} style={{ color: titleColor }}> <Link href={'/login'}>login</Link></ div>
+      </div>
+    </div>
+  )
+}

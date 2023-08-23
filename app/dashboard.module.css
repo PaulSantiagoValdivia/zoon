@@ -12,7 +12,7 @@
   overflow-x: hidden;
 }
 
-.imgDesk {
+.imgDeskContent {
   display: none;
 }
 
@@ -63,7 +63,7 @@ transition: 1s;
   transform: scale(0.9);
 transition: 0.5s;
 }
-.imgContainer {
+.imgContent {
   background-size: cover;
   background-repeat: no-repeat;
   position: fixed;
@@ -71,7 +71,7 @@ transition: 0.5s;
   z-index: -1;
 }
 
-.content {
+.infoWrapped {
   z-index: 1;
   margin-top: 100px;
   display: flex;
@@ -182,7 +182,7 @@ transition: 0.5s;
   transition: 0.5s;
 }
 
-.info {
+.wrapped{
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -221,17 +221,17 @@ flex-shrink: 0;
 
   }
 
-  .imgContainer {
+  .imgContent {
     display: none;
   }
 
-  .imgDesk {
+  .imgDeskContent {
     display: flex;
     width: 100vh;
     height: 100vh;
   }
-
-  .content {
+  
+  .infoWrapped {
     padding: 0;
     margin-top: -100px;
     width: 100%;
@@ -247,13 +247,13 @@ flex-shrink: 0;
   }
 
 
-  .info {
+  .wrapped {
     margin-left: 100px;
     display: flex;
     align-items: flex-start;
   }
 
-  .content::before {
+  .infoWrapped::before {
     content: "";
     position: absolute;
     top: 0;
@@ -282,7 +282,7 @@ flex-shrink: 0;
     width: auto;
   }
 
-  .primaryButton {
+  .btnDiscord {
     /* Add styles specific to the primary button on desktop here */
     width: 296px;
     height: 62px;
@@ -296,7 +296,7 @@ flex-shrink: 0;
     /* 96.154% */
   }
 
-  .secondaryButton {
+  .btnTwitter {
     /* Add styles specific to the secondary button on desktop here */
     width: 296px;
     height: 62px;

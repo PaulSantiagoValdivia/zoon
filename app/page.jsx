@@ -17,21 +17,21 @@ export default function Dashboard() {
 
   return (
     <div className={dashboard.container}>
-      <div className={dashboard.imgContainer}>
+      <div className={dashboard.imgContent}>
         <Image src="/images/raccoon.png"
           width={197}
           height={642}
           alt="image of the author"
         />
       </div>
-      <div className={dashboard.imgDesk}>
+      <div className={dashboard.imgDeskContent}>
         <img src="/images/raaccondesk.png"
           alt="image of the author"
           className={dashboard.raccoon}
         />
       </div>
-      <div className={dashboard.content}>
-        <div className={dashboard.info}>
+      <div className={dashboard.infoWrapped}>
+        <div className={dashboard.wrapped}>
           <h1
             className={dashboard.title}
             onClick={handleTitleClick}

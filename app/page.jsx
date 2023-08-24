@@ -45,7 +45,10 @@ export default function Dashboard() {
               className={dashboard.btnDiscord}
               style={{ color: '#000', background: titleColor }}
             >
-              <FaDiscord className={dashboard.icon} />  JOIN DISCORD
+              <div className={dashboard.span}>
+              <FaDiscord className={dashboard.icon} /> 
+               JOIN DISCORD
+              </div>
             </button>
             <button
               onClick={() => window.open('https://twitter.com/zoonlabs', '_blank')}
@@ -53,7 +56,10 @@ export default function Dashboard() {
               className={dashboard.btnTwitter}
               style={{ color: titleColor, border: `1px solid ${titleColor}` }}
             >
+              <div className={dashboard.span}>
+
               WHAT’S ZOON?
+              </ div>
             </button>
           </div>
           <p className={dashboard.description}>
@@ -61,7 +67,7 @@ export default function Dashboard() {
             not just founders.<span style={{ color: titleColor }}> #WAGMI</span>
           </p>
         </div>
-        <div className={dashboard.btnLogin} style={{ color: titleColor }}> <Link href={'/login'}>login</Link></ div>
+        <div className={dashboard.btnLogin} style={{ color: titleColor }}> <Link href={'/login'}>  <div className={dashboard.span}>login</div> </Link></ div>
       </div>
     </div>
   )

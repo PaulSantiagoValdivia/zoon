@@ -38,7 +38,7 @@
   background: #0F0F10;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   color: #F77;
-  
+
   font-family: Outfit;
   font-size: 16px;
   font-style: normal;
@@ -46,23 +46,41 @@
   line-height: 24px;
   /* 150% */
 }
+
 .btnLogin a {
   color: inherit;
   text-decoration: none;
 }
+
 .btnLogin:hover,
 .btnLogin:focus {
-  border-radius: var(--radius-minimal, 4px);
-  border: 1px solid var(--border-default, #19191D);
-transition: 1s;
+  transition: 1s;
+
 }
 
 .btnLogin:active {
-  border-radius: var(--radius-minimal, 4px);
-  border: 1px solid var(--border-default, #19191D);
   transform: scale(0.9);
-transition: 0.5s;
+  transition: 0.5s;
 }
+.span{
+  width: -webkit-fill-available;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.span:hover,
+.span:focus {
+  transition: transform 0.3s ease; 
+  transform: scale(1.1);
+}
+
+.span:active {
+  transition: 0.5s;
+}
+
 .imgContent {
   background-size: cover;
   background-repeat: no-repeat;
@@ -95,15 +113,18 @@ transition: 0.5s;
   line-height: normal;
   cursor: pointer;
 }
+
 .title:hover,
-.title:focus{
+.title:focus {
   transition: 0.5s;
-  
+
 }
-.title:active{
-  transform: scale(0.9); 
+
+.title:active {
+  transform: scale(0.9);
   transition: 0.5s;
 }
+
 .buttons {
   display: flex;
   width: 296px;
@@ -114,7 +135,7 @@ transition: 0.5s;
   border-radius: 8px;
 }
 
-.btnDiscord{
+.btnDiscord {
   cursor: pointer;
   border: none;
   outline: none;
@@ -136,14 +157,16 @@ transition: 0.5s;
   /* 132.212% */
 
 }
+
 .btnDiscord:hover,
 .btnDiscord:focus {
-  background: var(--background-tertiary, #0E0E10);
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  background: var(--background-tertiary, #e80404);
+  box-shadow: 0px 4px 4px 0px rgba(213, 19, 19, 0.25);
+
 }
 
 .btnDiscord:active {
-  transform: scale(0.9); 
+  transform: scale(0.9);
   transition: 0.5s;
 }
 
@@ -170,6 +193,7 @@ transition: 0.5s;
   line-height: 21.154px;
   /* 132.212% */
 }
+
 .btnTwitter:hover,
 .btnTwitter:focus {
   background: var(--background-tertiary, #0E0E10);
@@ -178,15 +202,17 @@ transition: 0.5s;
 
 /* Estilos cuando el usuario presiona el botón */
 .btnTwitter:active {
-  transform: scale(0.9); /* Cambio de escala al hacer clic */
+  transform: scale(0.9);
+  /* Cambio de escala al hacer clic */
   transition: 0.5s;
 }
 
-.wrapped{
+.wrapped {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
+
 .description {
   width: 191px;
   color: #979797;
@@ -208,10 +234,11 @@ transition: 0.5s;
   line-height: normal;
   cursor: pointer;
 }
-.icon{
+
+.icon {
   width: 42px;
-height: 42px;
-flex-shrink: 0;
+  height: 42px;
+  flex-shrink: 0;
 }
 
 @media (min-width: 1100px) {
@@ -230,7 +257,7 @@ flex-shrink: 0;
     width: 100vh;
     height: 100vh;
   }
-  
+
   .infoWrapped {
     padding: 0;
     margin-top: -100px;
@@ -266,13 +293,13 @@ flex-shrink: 0;
   .title {
     /* Add styles specific to the title on desktop here */
     color: #00FFC2;
-  font-family: 'MonumentExtended', sans-serif;
-  font-size: 120px;
-  margin: 40px 0;
-  font-style: normal;
-  font-weight: 900;
-  line-height: normal;
-  cursor: pointer;
+    font-family: 'MonumentExtended', sans-serif;
+    font-size: 120px;
+    margin: 40px 0;
+    font-style: normal;
+    font-weight: 900;
+    line-height: normal;
+    cursor: pointer;
   }
 
   .buttons {
@@ -313,7 +340,7 @@ flex-shrink: 0;
   .description {
     /* Add styles specific to the description on desktop here */
     width: auto;
-    
+
   }
 
   .raccoon {

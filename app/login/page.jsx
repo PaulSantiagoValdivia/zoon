@@ -1,7 +1,7 @@
 'use client'
 import { Auth } from '@supabase/auth-ui-react'
 import { ThemeSupa } from '@supabase/auth-ui-shared'
-import { supabase } from "@/lib/supabaseClient";
+import { supabase } from '../../lib/supabaseClient'
 import login from './login.module.css'
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
@@ -10,7 +10,7 @@ import { useState } from 'react';
 
 export default function Login(){
   const router = useRouter();
-  const  [magiLink, setMagicLink] = useState(false);
+  const  [magicLink, setMagicLink] = useState(false);
   const [status, setStatus] = useState('pending');
   const [email, setEmail] = useState('');
   const [validEmail, setValidEmail] = useState(false);

@@ -89,12 +89,10 @@
 
 @keyframes dropIn {
   0% {
-    transform: translateY(-100%);
     opacity: 0;
   }
   
   100% {
-    transform: translateY(0);
     opacity: 1;
   }
 }
@@ -249,19 +247,17 @@ margin: 40px 0 40px ;
     display: flex;
     width: 100vh;
     height: 100vh;
-    animation-duration: 3s;
+    animation-duration: 2s;
     animation-name: scalein;
     transform-origin: center;
   }
   
   @keyframes scalein {
     from {
-      margin-left: -100%;
       opacity: 0;
     }
     
     to {
-      margin: 0%;
       opacity: 1;
     }
   }
@@ -307,14 +303,13 @@ margin: 40px 0 40px ;
     position: absolute;
     top: 95px;
     right: 45px;
-    animation-duration: 3s;
+    animation-duration: 2s;
     animation-name: scalein;
     transform-origin: center;
   }
   
   @keyframes scalein {
     from {
-      margin-left: -100%;
       opacity: 0;
     }
     

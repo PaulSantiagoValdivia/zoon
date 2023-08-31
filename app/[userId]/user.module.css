@@ -16,24 +16,24 @@
 }
 
 .info>*:nth-child(1) {
-  animation: dropIn 3s ease-in-out;
+  animation: dropIn 1s ease-in-out;
 }
 .info>*:nth-child(2) {
-  animation: dropIn 3s ease-in-out;
+  animation: dropIn 1s ease-in-out;
 }
 .info>*:nth-child(3) {
-  animation: dropIn 3s ease-in-out;
+  animation: dropIn 1s ease-in-out;
 }
 
 
 @keyframes dropIn {
   0% {
-    transform: translateY(-100%);
+    transform: scale(0);
     opacity: 0;
   }
-
+  
   100% {
-    transform: translateY(0);
+    transform: scale(1);
     opacity: 1;
   }
 }
@@ -293,19 +293,17 @@
     display: flex;
     width: 100vh;
     height: 100vh;
-    animation-duration: 3s;
+    animation-duration: 1s;
     animation-name: scalein;
     transform-origin: center;
   }
   
   @keyframes scalein {
     from {
-      margin-left: -100%;
       opacity: 0;
     }
     
     to {
-      margin: 0%;
       opacity: 1;
     }
   }

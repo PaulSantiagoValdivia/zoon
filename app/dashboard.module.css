@@ -127,12 +127,10 @@ height: 60px;
 
 @keyframes dropIn {
   0% {
-    transform: translateY(-100%);
     opacity: 0;
   }
   
   100% {
-    transform: translateY(0);
     opacity: 1;
   }
 }
@@ -140,6 +138,7 @@ height: 60px;
 .title {
   width: 130px; 
     height: auto; 
+    margin-bottom: 20px;
 }
 /* Estilos para escritorio (ancho mínimo de pantalla 768px) */
 
@@ -292,12 +291,10 @@ height: 60px;
   
   @keyframes scalein {
     from {
-      margin-left: -100%;
       opacity: 0;
     }
     
     to {
-      margin: 0%;
       opacity: 1;
     }
   }

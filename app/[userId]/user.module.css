@@ -16,24 +16,22 @@
 }
 
 .info>*:nth-child(1) {
-  animation: dropIn 2s ease-in-out;
+  animation: dropIn 0.5s ease-in-out;
 }
 .info>*:nth-child(2) {
-  animation: dropIn 2s ease-in-out;
+  animation: dropIn 0.5s ease-in-out;
 }
 .info>*:nth-child(3) {
-  animation: dropIn 2s ease-in-out;
+  animation: dropIn 0.5s ease-in-out;
 }
 
 
 @keyframes dropIn {
   0% {
-    transform: scale(0);
     opacity: 0;
   }
   
   100% {
-    transform: scale(1);
     opacity: 1;
   }
 }
@@ -166,7 +164,7 @@
   /* 150% */
   border: none;
   outline: none;
-  animation-duration: 2s;
+  animation-duration: 0.5s;
   animation-name: scalein;
   transform-origin: center;
 }
@@ -305,7 +303,7 @@
     display: flex;
     width: 100vh;
     height: 100vh;
-    animation-duration: 2s;
+    animation-duration: 0.5s;
     animation-name: scalein;
     transform-origin: center;
   }

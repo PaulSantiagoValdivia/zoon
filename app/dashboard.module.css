@@ -45,7 +45,7 @@ height: 60px;
   font-weight: 400;
   line-height: 24px;
   /* 150% */
-  animation-duration: 1s;
+  animation-duration: 0.5s;
   animation-name: scalein;
   transform-origin: center;
 }
@@ -119,7 +119,7 @@ height: 60px;
 }
 
 .infoWrapped > *:nth-child(1) {
-  animation: dropIn 1s ease-in-out;
+  animation: dropIn 0.5s ease-in-out;
 }
 
 
@@ -284,7 +284,7 @@ height: 60px;
     display: flex;
     width: 100vh;
     height: 100vh;
-    animation-duration: 1s;
+    animation-duration: 0.5s;
     animation-name: scalein;
     transform-origin: center;
   }

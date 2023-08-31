@@ -50,13 +50,13 @@ export default function Login(){
         />
       </div>
       <div className={login.content}>
-        <button onClick={() => router.push('/')} className={login.btnBack}>Go back</button>
+        <div onClick={() => router.push('/')} className={login.btnBack}> <span className={login.span}>Go back</span></div>
         <div className={login.wrapped}>
 
           {magicLink ? (
             <>
               <h1 className={login.title}>
-                Create an account at _zoon
+                Create an account at _ZOON
               </h1>
               <p className={login.description}>
                 This helps to avoid bots from minting
@@ -103,19 +103,16 @@ export default function Login(){
                     theme: ThemeSupa,
                     style: {
                       button: {
-                        margin: '0 auto',
                         background: '#0000',
-                        width: '334px',
                         color: '#6E6E6E',
                         borderColor: '#19191D',
                         transition:
-                          'background-color 0.3s, border-color 0.3s, color 0.3s',
+                        'background-color 0.3s, border-color 0.3s, color 0.3s',
                       },
-                      buttonHover: {
-                        background: '#fff',
-                        color: '#FFFFFF',
-                        borderColor: '#fff',
-                      },
+                      container:{
+                        margin: '0px',
+                        width: '360px',
+                      }
                     },
                   }}
                   providers={['google']}

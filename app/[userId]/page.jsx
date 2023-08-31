@@ -136,9 +136,7 @@ export default function Account({ params }) {
     const { error } = await supabase.auth.signOut()
     router.push(`/login`)
     localStorage.removeItem('isConnected');
-
     setIsConnected(false);
-    console.log(error);
   }
   useEffect(() => {
     const storedIsConnected = localStorage.getItem('isConnected');
@@ -146,12 +144,12 @@ export default function Account({ params }) {
       setIsConnected(true);
     }
   }, []);
+  
   useEffect(() => {
     const checkUser = async () => {
       const auth = await supabase.auth.getSession()
       setUserId(auth.data.session?.user.id)
       if (auth.data.session?.user.aud === "authenticated") {
-
         try {
           // Check if the user already exists in the database
           const { data: existingUser, error: existingUserError } = await supabase
@@ -160,11 +158,9 @@ export default function Account({ params }) {
             .eq('id', auth.data.session?.user.id)
             .single()
 
-
           if (existingUser) {
             // User already exists, redirect to the user's page            
             router.push(existingUser.username);
-
           } else {
             // User doesn't exist, insert them into the "users" table
             const { data: newUser, error: insertError } = await supabase
@@ -313,7 +309,7 @@ if (isConnected) {
             </form>
             <p id="username-error" className={user.error}></p>
           </div>
-          <button onClick={signOut} className={user.btnLogin}>Logout</button>
+          <button onClick={signOut} className={user.btnLogout}>Logout</button>
         </div>
       </div>
     </UserLayout>

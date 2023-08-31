@@ -6,13 +6,30 @@
   display: none;
 }
 
+.span{
+  height: inherit;  
+  width: -webkit-fill-available;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.span:hover,
+.span:focus {
+  transition: transform 0.3s ease; 
+  transform: scale(1.1);
+}
+
+.span:active {
+  transition: 0.5s;
+}
 .btnBack {
   position: absolute;
   margin: 24px auto;
   top: 0px;
   display: flex;
   width: 129px;
-  padding: var(--spacing-ms, 16px);
+ height: 52px;
   justify-content: center;
   align-items: center;
   gap: var(--spacing-sm, 8px);
@@ -27,6 +44,15 @@
   font-style: normal;
   font-weight: 400;
   line-height: 24px;
+}
+.btnBack:hover,
+.btnBack:focus {
+  background-color:  #0E0E10
+}
+
+.btnBack:active {
+  transform: scale(1.1);
+  transition: 0.5s;
 }
 
 .imgContainer {
@@ -51,12 +77,36 @@
   background-color: transparent;
 }
 
-.provaider {
-  margin-top: 40px;
-  margin-bottom: 40px;
+.content> * {
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-in-out;
 }
 
-.title {
+.content > *:nth-child(2) {
+  animation: dropIn 2s ease-in-out;
+}
+
+
+@keyframes dropIn {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.provaider {
+margin: 40px 0 40px ;
+}
+
+.provaider:hover{
+  background-color:  #0E0E10
+}
+  .title {
   color: #FFF;
   font-family: Outfit;
   font-size: 22px;
@@ -110,7 +160,9 @@
   font-weight: 900;
   line-height: 36px;
 }
-
+.magicLink:hover{
+  color: #FFF;
+}
 .inputLogin {
   display: flex;
   width: 278px;
@@ -197,6 +249,32 @@
     display: flex;
     width: 100vh;
     height: 100vh;
+    animation-duration: 3s;
+    animation-name: scalein;
+    transform-origin: center;
+  }
+  
+  @keyframes scalein {
+    from {
+      margin-left: -100%;
+      opacity: 0;
+    }
+    
+    to {
+      margin: 0%;
+      opacity: 1;
+    }
+  }
+  
+  .title {
+    width: 446px;
+    color: #FFF;
+    font-family: Outfit;
+    font-size: 33px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: 36px;
+    /* 109.091% */
   }
 
   .content {
@@ -229,8 +307,23 @@
     position: absolute;
     top: 95px;
     right: 45px;
+    animation-duration: 3s;
+    animation-name: scalein;
+    transform-origin: center;
   }
-
+  
+  @keyframes scalein {
+    from {
+      margin-left: -100%;
+      opacity: 0;
+    }
+    
+    to {
+    
+      opacity: 1;
+    }
+  }
+  
   .raccoon {
     object-fit: cover;
     width: 100%;

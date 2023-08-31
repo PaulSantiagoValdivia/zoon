@@ -24,7 +24,7 @@
   bottom: 0;
   display: flex;
   width: 100%;
-  padding: var(--spacing-ms, 16px);
+height: 60px;
   justify-content: center;
   align-items: center;
   gap: var(--spacing-sm, 8px);
@@ -45,11 +45,19 @@
   font-weight: 400;
   line-height: 24px;
   /* 150% */
+  animation-duration: 3s;
+  animation-name: scalein;
+  transform-origin: center;
 }
 
-.btnLogin a {
-  color: inherit;
-  text-decoration: none;
+@keyframes scalein {
+  from {
+    opacity: 0;
+  }
+  
+  to {
+    opacity: 1;
+  }
 }
 
 .btnLogin:hover,
@@ -62,7 +70,9 @@
   transform: scale(0.9);
   transition: 0.5s;
 }
+
 .span{
+  height: inherit;  
   width: -webkit-fill-available;
   text-align: center;
   display: flex;
@@ -103,16 +113,35 @@
   width: 0 auto;
   background-color: transparent;
 }
+.infoWrapped> * {
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-in-out;
+}
+
+.infoWrapped > *:nth-child(1) {
+  animation: dropIn 3s ease-in-out;
+}
+
+
+
+
+@keyframes dropIn {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
 
 .title {
-  color: #00FFC2;
-  font-family: 'MonumentExtended', sans-serif;
-  font-size: 40px;
-  font-style: normal;
-  font-weight: 800;
-  line-height: normal;
-  cursor: pointer;
+  width: 130px; 
+    height: auto; 
 }
+/* Estilos para escritorio (ancho mínimo de pantalla 768px) */
 
 .title:hover,
 .title:focus {
@@ -256,7 +285,23 @@
     display: flex;
     width: 100vh;
     height: 100vh;
+    animation-duration: 3s;
+    animation-name: scalein;
+    transform-origin: center;
   }
+  
+  @keyframes scalein {
+    from {
+      margin-left: -100%;
+      opacity: 0;
+    }
+    
+    to {
+      margin: 0%;
+      opacity: 1;
+    }
+  }
+  
 
   .infoWrapped {
     padding: 0;
@@ -291,15 +336,9 @@
   }
 
   .title {
-    /* Add styles specific to the title on desktop here */
-    color: #00FFC2;
-    font-family: 'MonumentExtended', sans-serif;
-    font-size: 120px;
-    margin: 40px 0;
-    font-style: normal;
-    font-weight: 900;
-    line-height: normal;
+    width: 80%;
     cursor: pointer;
+    margin-bottom: 30px;
   }
 
   .buttons {

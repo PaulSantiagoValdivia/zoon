@@ -2,12 +2,14 @@
 import React, { useState } from 'react';
 import Image from 'next/image'
 import dashboard from './dashboard.module.css'
-import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { FaDiscord } from 'react-icons/fa';
+import Zoon from './Zoon';
 
 export default function Dashboard() {
   const [clickCount, setClickCount] = useState(0);
-  const handleTitleClick  = () => {
+  const router = useRouter();
+  const handleTitleClick = () => {
     setClickCount(clickCount + 1)
   }
   const color1 = '#00FFC2';
@@ -32,13 +34,13 @@ export default function Dashboard() {
       </div>
       <div className={dashboard.infoWrapped}>
         <div className={dashboard.wrapped}>
-          <h1
-            className={dashboard.title}
+          <div
             onClick={handleTitleClick}
-            style={{ color: titleColor }}
+            style={{ fill: titleColor }}
+            className={dashboard.title}
           >
-            ZOON
-          </h1>
+            <Zoon fill={titleColor} />
+          </div>
           <div className={dashboard.buttons}>
             <button
               onClick={() => window.open('https://discord.com/invite/wMmXRXaS', '_blank')}
@@ -46,8 +48,8 @@ export default function Dashboard() {
               style={{ color: '#000', background: titleColor }}
             >
               <div className={dashboard.span}>
-              <FaDiscord className={dashboard.icon} /> 
-               JOIN DISCORD
+                <FaDiscord className={dashboard.icon} />
+                JOIN DISCORD
               </div>
             </button>
             <button
@@ -58,7 +60,7 @@ export default function Dashboard() {
             >
               <div className={dashboard.span}>
 
-              WHAT’S ZOON?
+                WHAT’S ZOON?
               </ div>
             </button>
           </div>
@@ -67,7 +69,7 @@ export default function Dashboard() {
             not just founders.<span style={{ color: titleColor }}> #WAGMI</span>
           </p>
         </div>
-        <div className={dashboard.btnLogin} style={{ color: titleColor }}> <Link href={'/login'}>  <div className={dashboard.span}>login</div> </Link></ div>
+        <div className={dashboard.btnLogin} style={{ color: titleColor }}> <div onClick={() => router.push('/login')} className={dashboard.span}>login</div></ div>
       </div>
     </div>
   )

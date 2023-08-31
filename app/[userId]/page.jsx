@@ -149,6 +149,7 @@ export default function Account({ params }) {
     const checkUser = async () => {
       const auth = await supabase.auth.getSession()
       setUserId(auth.data.session?.user.id)
+
       if (auth.data.session?.user.aud === "authenticated") {
         try {
           // Check if the user already exists in the database
@@ -181,7 +182,7 @@ export default function Account({ params }) {
           console.error(error);
         }
       } else {
-  
+        router.push('/login')
       }
     };
 

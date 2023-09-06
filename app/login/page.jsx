@@ -50,7 +50,7 @@ export default function Login(){
         />
       </div>
       <div className={login.content}>
-        <div onClick={() => router.push('/')} className={login.btnBack}> <span className={login.span}>Go back</span></div>
+        <div onClick={() => router.push('/')} className={login.btnBack}> Go back</div>
         <div className={login.wrapped}>
 
           {magicLink ? (

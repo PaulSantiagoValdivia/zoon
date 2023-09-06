@@ -47,21 +47,15 @@ export default function Dashboard() {
               className={dashboard.btnDiscord}
               style={{ color: '#000', background: titleColor }}
             >
-              <div className={dashboard.span}>
-                <FaDiscord className={dashboard.icon} />
-                JOIN DISCORD
-              </div>
+              <FaDiscord className={dashboard.icon} />
+              JOIN DISCORD
             </button>
             <button
               onClick={() => window.open('https://twitter.com/zoonlabs', '_blank')}
-
               className={dashboard.btnTwitter}
               style={{ color: titleColor, border: `1px solid ${titleColor}` }}
             >
-              <div className={dashboard.span}>
-
-                WHAT’S ZOON?
-              </ div>
+              WHAT’S ZOON?
             </button>
           </div>
           <p className={dashboard.description}>
@@ -69,7 +63,7 @@ export default function Dashboard() {
             not just founders.<span style={{ color: titleColor }}> #WAGMI</span>
           </p>
         </div>
-        <div className={dashboard.btnLogin} style={{ color: titleColor }}> <div onClick={() => router.push('/login')} className={dashboard.span}>login</div></ div>
+        <div className={dashboard.btnLogin} style={{ color: titleColor }} onClick={() => router.push('/login')}>   login</ div>
       </div>
     </div>
   )

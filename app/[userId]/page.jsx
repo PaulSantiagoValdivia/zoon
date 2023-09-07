@@ -182,7 +182,7 @@ export default function Account({ params }) {
           console.error(error);
         }
       } else {
-        router.push('/login')
+    
       }
     };
 
@@ -310,8 +310,8 @@ export default function Account({ params }) {
               </form>
               <p id="username-error" className={user.error}></p>
             </div>
-          </div>
           <button onClick={signOut} className={user.btnLogout}>Logout</button>
+          </div>
         </div>
     </UserLayout>
   );

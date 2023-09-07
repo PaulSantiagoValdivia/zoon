@@ -182,7 +182,7 @@ export default function Account({ params }) {
           console.error(error);
         }
       } else {
-    
+        router.push('/login')
       }
     };
 

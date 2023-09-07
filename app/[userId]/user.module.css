@@ -86,7 +86,7 @@
 
 .disconnected {
   display: flex;
-  width: 360px;
+  width: 340px;
   height: 56px;
   padding: var(--spacing-ms, 6px);
   justify-content: center;

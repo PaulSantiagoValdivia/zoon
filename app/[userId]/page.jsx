@@ -168,7 +168,6 @@ export default function Account({ params }) {
               .from('users')
               .insert([{ id: auth.data.session?.user.id, username: auth.data.session?.user.user_metadata.sub }])
               .single()
-
             if (insertError) {
               // Handle the error if the insert operation fails
               console.error(insertError);

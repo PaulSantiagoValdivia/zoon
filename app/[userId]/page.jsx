@@ -76,10 +76,8 @@ export default function Account({ params }) {
       };
       const response = await fetch(`${API_ENDPOINT}/users/@me`, requestOptions);
       const userData = await response.json();
-
-      const existingDiscordUser = await checkExistingDiscordUserByUserId(userId);
-      setIsConnected(false);
-      if (!existingDiscordUser) {
+      console.log(userData);
+      if (response.ok) {
         const { data: existingUser } = await supabase
           .from('discord')
           .select('*')
@@ -132,15 +130,7 @@ export default function Account({ params }) {
       console.error('Error fetching user data:', error.message);
     }
   };
-  const checkExistingDiscordUserByUserId = async (userId) => {
-    // Realiza una consulta para verificar si ya existe un usuario de Discord vinculado al mismo 'user_id'
-    const { data } = await supabase
-      .from('discord')
-      .select()
-      .eq('user_id', userId)
-      .single();
-    return data;
-  };
+
 
   async function signOut() {
     const { error } = await supabase.auth.signOut()

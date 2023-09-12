@@ -27,7 +27,6 @@ export default function Account({ params }) {
     try {
       localStorage.removeItem('isConnected');
       setIsConnected(false);
-      console.log('Disconnected from Discord and updated state');
     } catch (error) {
       console.error('Error disconnecting from Discord:', error.message);
     }
@@ -76,8 +75,8 @@ export default function Account({ params }) {
       };
       const response = await fetch(`${API_ENDPOINT}/users/@me`, requestOptions);
       const userData = await response.json();
-      console.log(userData);
-      if (response.ok) {
+      const existingDiscordUser = await checkExistingDiscordUserByUserId(data.id);
+      if (!existingDiscordUser) {
         const { data: existingUser } = await supabase
           .from('discord')
           .select('*')
@@ -85,7 +84,7 @@ export default function Account({ params }) {
           .single();
 
         if (!existingUser) {
-          const { data: newDiscordUser, error: insertError } = await supabase
+          const { data} = await supabase
             .from('discord')
             .insert([
               {
@@ -95,42 +94,36 @@ export default function Account({ params }) {
               }
             ])
             .single();
-
-          if (insertError) {
-            console.error('Error inserting Discord user data:', insertError);
-          } else {
-            console.log('Discord user data inserted successfully:', newDiscordUser);
-
-          }
         } else {
           if (existingUser.discord_username !== userData.username) {
-            const { data: updatedUser, error: updateError } = await supabase
+            const { data } = await supabase
               .from('discord')
               .update({
                 discord_username: userData.username,
               })
               .eq('id', userData.id)
               .single();
-
-            if (updateError) {
-              console.error('Error updating Discord user data:', updateError);
-            } else {
-              console.log('Discord username updated in the database:', updatedUser);
-            }
-          } else {
-            console.log('Discord user already exists in the database:', existingUser);
           }
         }
 
-      } else {
-        console.error('Error fetching user data:', response.statusText);
       }
 
     } catch (error) {
       console.error('Error fetching user data:', error.message);
     }
   };
-
+  const checkExistingDiscordUserByUserId = async (userId) => {
+    // Realiza una consulta para verificar si ya existe un usuario de Discord vinculado al mismo 'user_id'
+    const { data } = await supabase
+      .from('discord')
+      .select()
+      .eq('user_id', userId)
+      .single();
+      if(data){
+        setIsConnected(false);
+        return data;
+      }
+  };
 
   async function signOut() {
     const { error } = await supabase.auth.signOut()
@@ -181,7 +174,7 @@ export default function Account({ params }) {
           console.error(error);
         }
       } else {
-        router.push('/login')
+
       }
     };
 
@@ -197,14 +190,8 @@ export default function Account({ params }) {
           .eq('user_id', userId)
           .single();
 
-        if (error) {
-          console.error('Error fetching Discord username:', window.console.error);
-          return null;
-        }
-
         setUserDiscord(data ? data.discord_username : null);
       } catch (error) {
-        console.error('Error fetching Discord username:', error.message);
         return null;
       }
     };
@@ -219,15 +206,11 @@ export default function Account({ params }) {
 
     try {
       // Check if the new username already exists in the database
-      const { data: existingUsers, error: fetchError } = await supabase
+      const { data: existingUsers } = await supabase
         .from('users')
         .select('id')
         .eq('username', username);
 
-      if (fetchError) {
-        console.error('Error fetching existing users:', fetchError.message);
-        return;
-      }
       if (existingUsers.length > 0) {
         const errorElement = document.getElementById('username-error');
         if (errorElement) {
@@ -241,12 +224,7 @@ export default function Account({ params }) {
         .from('users')
         .update({ username: username })
         .eq('id', userId);
-      if (error) {
-
-        console.error('Error updating the username:', error.message);
-      } else {
-        console.log('Username updated successfully:', data);
-        // Redirect to the new username's page
+      if (data) {
         router.push(`/${username}`);
       }
     } catch (error) {
@@ -266,52 +244,52 @@ export default function Account({ params }) {
             alt="image of the author"
           />
         </div>
-          <div className={user.info}>
-            <div className={user.presentation}>
-              <h1 className={user.title}>Welcome {params.userId}</h1>
-              <p className={user.description}>
-                You are early.
-              </p>
-            </div>
-            <div className={user.content}>
-              <h2 className={user.subTitle}>Verify your discord </h2>
-              <p className={user.description}>This will allow to mint before it goes public.</p>
-              <button onClick={isConnected ? disconnectDiscord : discordLogin} className={isConnected ? user.disconnected : user.primaryButton}>
-                {isConnected ? (
-                  <>
-                    <FaDiscord className={user.icon} /> Disconnect Discord <span>{userDiscord}</span>
-                  </>
-                ) : (
-                  <>
-                    <FaDiscord className={user.icon} /> Connect Discord
-                  </>
-                )}
-              </button>
-            </div>
-            <div className={user.update}>
-              <h1 className={user.subTitle}>Username</h1>
-              <p className={user.description}>Choose a username for your _zoon account</p>
-              <form onSubmit={handleSubmit} className={user.form}>
-                <input
-                  type='text'
-                  name='name'
-                  placeholder='Choose a username'
-                  value={username}
-                  onChange={(e) => {
-                    setUsername(e.target.value);
-                    setIsInputFilled(e.target.value !== '');
-                  }}
-                  className={user.input}
-                />
-                <button className={`${user.btn} ${isInputFilled ? user.btnFilled : ''}`}
-                  disabled={!isInputFilled}
-                >Update</button>
-              </form>
-              <p id="username-error" className={user.error}></p>
-            </div>
-          <button onClick={signOut} className={user.btnLogout}>Logout</button>
+        <div className={user.info}>
+          <div className={user.presentation}>
+            <h1 className={user.title}>Welcome {params.userId}</h1>
+            <p className={user.description}>
+              You are early.
+            </p>
           </div>
+          <div className={user.content}>
+            <h2 className={user.subTitle}>Verify your discord </h2>
+            <p className={user.description}>This will allow to mint before it goes public.</p>
+            <button onClick={isConnected ? disconnectDiscord : discordLogin} className={isConnected ? user.disconnected : user.primaryButton}>
+              {isConnected ? (
+                <>
+                  <FaDiscord className={user.icon} /> Disconnect Discord <span>{userDiscord}</span>
+                </>
+              ) : (
+                <>
+                  <FaDiscord className={user.icon} /> Connect Discord
+                </>
+              )}
+            </button>
+          </div>
+          <div className={user.update}>
+            <h1 className={user.subTitle}>Username</h1>
+            <p className={user.description}>Choose a username for your _zoon account</p>
+            <form onSubmit={handleSubmit} className={user.form}>
+              <input
+                type='text'
+                name='name'
+                placeholder='Choose a username'
+                value={username}
+                onChange={(e) => {
+                  setUsername(e.target.value);
+                  setIsInputFilled(e.target.value !== '');
+                }}
+                className={user.input}
+              />
+              <button className={`${user.btn} ${isInputFilled ? user.btnFilled : ''}`}
+                disabled={!isInputFilled}
+              >Update</button>
+            </form>
+            <p id="username-error" className={user.error}></p>
+          </div>
+          <button onClick={signOut} className={user.btnLogout}>Logout</button>
         </div>
+      </div>
     </UserLayout>
   );
 }

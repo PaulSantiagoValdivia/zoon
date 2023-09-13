@@ -117,7 +117,7 @@ export default function Login(){
                   }}
                   providers={['google']}
                   onlyThirdPartyProviders={true}
-                  redirectTo='http://localhost:3000/userId'
+                  redirectTo='https://www.zoonlabs.com/userId'
                 />
               </div>
               <a className={login.magicLink} onClick={handleBoolean}>or use a magic link</a>

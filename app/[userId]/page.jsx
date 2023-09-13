@@ -76,14 +76,14 @@ export default function Account({ params }) {
       };
       const response = await fetch(`${API_ENDPOINT}/users/@me`, requestOptions);
       const userData = await response.json();
-      console.log(userData);
+      const userAlreadyLinked = await checkIfUserAlreadyLinked(userId);
+
       if (response.ok) {
         const { data: existingUser } = await supabase
           .from('discord')
           .select('*')
           .eq('id', userData.id)
           .single();
-
         if (!existingUser) {
           const { data: newDiscordUser, error: insertError } = await supabase
             .from('discord')
@@ -131,7 +131,31 @@ export default function Account({ params }) {
     }
   };
 
-
+  const checkIfUserAlreadyLinked = async (userId) => {
+    try {
+      const { data, error } = await supabase
+        .from('discord')
+        .select('id')
+        .eq('user_id', userId);
+      
+      if (error) {
+        console.error('Error checking if user is already linked to Discord:', error.message);
+      } else {
+        // Si data contiene alguna fila, significa que el usuario ya está vinculado a Discord.
+        if (data.length > 0) {
+          console.log('El usuario ya está vinculado a Discord.');
+          return true;
+        } else {
+          console.log('El usuario no está vinculado a Discord.');
+          return false;
+        }
+      }
+    } catch (error) {
+      console.error('Error checking if user is already linked to Discord:', error.message);
+      return false;
+    }
+  };
+  
   async function signOut() {
     const { error } = await supabase.auth.signOut()
     router.push(`/login`)
